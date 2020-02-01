@@ -305,7 +305,7 @@ augroup END
 set clipboard+=unnamedplus
 set colorcolumn=121
 
-source ~/vim-dotfiles/trailing-whitespace.vim
+source ~/dotfiles/vim/trailing-whitespace.vim
 
 " Autoreload the file if it's changed outside of vim
 set autoread
