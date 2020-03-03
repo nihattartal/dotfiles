@@ -140,7 +140,7 @@ nnoremap <leader>pu :PlugUpdate<CR>
 nnoremap <leader>pc :PlugClean<CR>
 
 "------------------------------------------------------------
-" FZF bindings 
+" FZF bindings
 "------------------------------------------------------------
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>a :Ack<space>
@@ -149,9 +149,13 @@ nnoremap <leader>sb :BLines<CR>
 nnoremap <leader>b :Buffers<CR>
 
 "------------------------------------------------------------
+" PERSONAL
+"------------------------------------------------------------
+" yank root of current file's name into the clipboard
+nnoremap <leader>p :!echo % \| pbcopy<cr><cr>
+"------------------------------------------------------------
 " Plug
 "------------------------------------------------------------
-
 call plug#begin('~/.vim/bundle')
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -184,6 +188,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+Plug 'jparise/vim-graphql'
+Plug 'leafgarland/typescript-vim'
 " Initialize plugin system
 call plug#end()
 
@@ -219,6 +225,7 @@ let g:mustache_operators = 1
  \   'javascript': ['eslint'],
  \   'python': ['flake8'],
  \   'ruby': ['rubocop'],
+ \   'graphql': ['gqlint'],
  \   'yaml': ['yaml-lint']
  \}
  " Only lint on save.
@@ -319,7 +326,7 @@ function! CheckUpdate(timer)
     call timer_start(1000,'CheckUpdate')
 endfunction
 
-" set tags^=./.git/tags;
+set tags^=./.git/tags;
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
