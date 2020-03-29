@@ -191,6 +191,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 Plug 'jparise/vim-graphql'
 Plug 'leafgarland/typescript-vim'
+Plug 'christoomey/vim-tmux-navigator'
 " Initialize plugin system
 call plug#end()
 
