@@ -167,6 +167,7 @@ Plug 'mileszs/ack.vim'
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 Plug 'michaeljsmith/vim-indent-object'
 
@@ -363,3 +364,13 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" Git branch files
+function! QuickfixGitBranchFiles()
+  let git_branch_files = systemlist('~/bin/git-list-branch-files')
+  call setqflist(map(copy(git_branch_files), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+nnoremap <leader>1 :call QuickfixGitBranchFiles()<CR>
+
