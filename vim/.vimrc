@@ -375,3 +375,4 @@ function! QuickfixGitBranchFiles()
 endfunction
 nnoremap <leader>1 :call QuickfixGitBranchFiles()<CR>
 
+set clipboard=
