@@ -1,15 +1,3 @@
-if [[ -f /opt/dev/dev.sh ]] && [[ $- == *i* ]]; then
-  source /opt/dev/dev.sh
-fi
-
-export NIX_PATH="/Users/ntartal/.nix-defexpr/channels/nixpkgs:/Users/ntartal/.nix-defexpr/channels"
-export DISABLE_SPRING=1
-export GITHUB_TOKEN_CI_STATUS=def86c084b001335dc653f18b2b879de72f24cdc
-export PATH="/usr/local/share/chruby:$PATH"
-export GOPATH=$HOME
-export PATH=$GOPATH/bin:$PATH
-export DEV=~/src/github.com/Shopify/shopify
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -118,7 +106,6 @@ prompt_context() {
 
 
 #VIM
-
 alias vi="vi -u /Users/ntartal/dotfiles/vim/.vimrc"
 alias vim="vi -u /Users/ntartal/dotfiles/vim/.vimrc"
 export EDITOR="vi -u /Users/ntartal/dotfiles/vim/.vimrc"
@@ -155,9 +142,3 @@ run_fzf_with_preview() {
 
 zle     -N   git_autocomplete
 bindkey '^G' git_autocomplete
-
-# Kitty
-autoload -Uz compinit
-compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
