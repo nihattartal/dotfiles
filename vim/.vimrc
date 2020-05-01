@@ -347,17 +347,11 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
-
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['/Users/ntartal/.gem/ruby/2.6.5/bin/solargraph', 'stdio'],
+    \ 'ruby': ['~/.gem/ruby/2.6.5/bin/solargraph', 'stdio'],
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -375,4 +369,4 @@ function! QuickfixGitBranchFiles()
 endfunction
 nnoremap <leader>1 :call QuickfixGitBranchFiles()<CR>
 
-set clipboard=
+"set clipboard=
