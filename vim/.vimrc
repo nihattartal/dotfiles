@@ -114,11 +114,11 @@ nnoremap j gj
 nnoremap k gk
 nnoremap ; :
 nnoremap ' ;
-nnoremap ;gs :Gstatus<CR>
-nnoremap ;gc :Gcommit<CR>
-nnoremap ;gca :Gcommit --amend<CR>
-nnoremap ;gw :Gwrite<CR>
-nnoremap ;gr :Gread<CR>
+" nnoremap ;gs :Gstatus<CR>
+" nnoremap ;gc :Gcommit<CR>
+" nnoremap ;gca :Gcommit --amend<CR>
+" nnoremap ;gw :Gwrite<CR>
+" nnoremap ;gr :Gread<CR>
 nnoremap <Up> 5k
 nnoremap <Down> 5j
 nnoremap ,, <C-^>
@@ -200,9 +200,9 @@ call plug#end()
 
 set modifiable
 map <C-n> :NERDTreeToggle<CR>
+map ] :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 30
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.jshint$']
-
 "------------------------------------------------------------
 " Airline
 
@@ -265,7 +265,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Ack
 "-----------------------------------------------------------
 
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'ag --ignore "*.rbi"'
 
 "-----------------------------------------------------------s
 " Bclose
@@ -311,7 +311,13 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
 augroup END
 
-set clipboard+=unnamedplus
+" Make tsx files typescript filetype
+augroup SyntaxSettings
+  autocmd!
+  autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+augroup END
+
+"set clipboard+=unnamedplus
 set colorcolumn=121
 
 source ~/dotfiles/vim/trailing-whitespace.vim
