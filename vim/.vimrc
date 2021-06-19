@@ -153,7 +153,12 @@ nnoremap <leader>b :Buffers<CR>
 "------------------------------------------------------------
 " yank root of current file's name into the clipboard
 nnoremap <leader>p :!echo % \| pbcopy<cr><cr>
+
 "------------------------------------------------------------
+" CoC Yank (First of all install with :CocInstall coc-yank)
+"------------------------------------------------------------
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+
 " Plug
 "------------------------------------------------------------
 call plug#begin('~/.vim/bundle')
@@ -198,6 +203,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'tpope/vim-surround'
 " Initialize plugin system
 call plug#end()
 
