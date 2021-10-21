@@ -91,6 +91,10 @@ set t_vb=
 " Enable use of the mouse for all modes
 set mouse=a
 
+" Show vertical and horizontal line for the cursor
+set cursorcolumn
+set cursorline 
+
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
 set cmdheight=2
@@ -142,12 +146,15 @@ nnoremap <leader>pc :PlugClean<CR>
 "------------------------------------------------------------
 " FZF bindings
 "------------------------------------------------------------
-nnoremap <leader>f :FZF<CR>
+"nnoremap <leader>f :FZF<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>a :Ack<space>
 nnoremap <leader>sl :Lines<CR>
 nnoremap <leader>sb :BLines<CR>
 nnoremap <leader>b :Buffers<CR>
 
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/bundle/fzf.vim/bin/preview.sh {}']}, <bang>0)
 "------------------------------------------------------------
 " PERSONAL
 "------------------------------------------------------------
@@ -176,7 +183,8 @@ Plug 'tpope/vim-rhubarb'
 
 Plug 'michaeljsmith/vim-indent-object'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf'
+", { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'w0rp/ale'
@@ -215,6 +223,12 @@ map <C-n> :NERDTreeToggle<CR>
 map ] :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 30
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.jshint$']
+
+"------------------------------------------------------------
+" VIMRC
+map <leader>ve :edit ~/dotfiles/vim/.vimrc<cr>
+map <leader>vs :source ~/dotfiles/vim/.vimrc<cr>
+
 "------------------------------------------------------------
 " Airline
 
