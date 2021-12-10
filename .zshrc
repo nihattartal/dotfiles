@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export DISABLE_SPRING=1
+export PATH=$HOME/runnables:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ntartal/.oh-my-zsh"
@@ -24,8 +25,9 @@ ZSH_THEME="agnoster"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
- DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="false"
 
+ZSH_DISABLE_COMPFIX="true"
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
 
@@ -106,10 +108,9 @@ prompt_context() {
 
 
 #VIM
-alias vi="vi -u /Users/ntartal/dotfiles/vim/.vimrc"
-alias vim="vi -u /Users/ntartal/dotfiles/vim/.vimrc"
+alias vi="/usr/local/Cellar/neovim/0.4.4_2/bin/nvim -u /Users/ntartal/dotfiles/vim/.vimrc"
+alias vim="/usr/local/Cellar/neovim/0.4.4_2/bin/nvim -u /Users/ntartal/dotfiles/vim/.vimrc"
 export EDITOR="vi -u /Users/ntartal/dotfiles/vim/.vimrc"
-alias core="dev cd shopify"
 
 
 
@@ -142,3 +143,10 @@ run_fzf_with_preview() {
 
 zle     -N   git_autocomplete
 bindkey '^G' git_autocomplete
+
+[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+if [ -e /Users/ntartal/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ntartal/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+[[ -x /usr/local/bin/brew ]] && eval $(/usr/local/bin/brew shellenv)
