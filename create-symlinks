@@ -54,7 +54,7 @@ link_files() {
 install_oh_my_zsh() {
     if [ ! -d "$HOME/.oh-my-zsh" ] ; then
         echo "oh-my-zsh isn't installed - cloning from git"
-        git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+        git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
     fi
 }
 
