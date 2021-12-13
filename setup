@@ -1,0 +1,19 @@
+#!/bin/bash
+
+pre_install() {
+  if [ $SPIN ] ; then
+    sudo apt install -y silversearcher-ag
+    rm ~/.gitconfig ~/.zshrc
+  fi
+}
+
+install() {
+  ./create-symlinks
+}
+
+main() {
+  pre_install
+  install
+}
+
+main

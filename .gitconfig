@@ -80,7 +80,6 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	commitGraph = true
-        editor=vim -u /Users/ntartal/vim-dotfiles/.vimrc -c \"setlocal spell spelllang=en_us\"
 [gc]
 	writeCommitGraph = true
 [init]
