@@ -3,7 +3,7 @@ export DISABLE_SPRING=1
 export PATH=$HOME/runnables:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/ntartal/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -108,11 +108,8 @@ prompt_context() {
 
 
 #VIM
-alias vi="/usr/local/Cellar/neovim/0.4.4_2/bin/nvim -u /Users/ntartal/dotfiles/vim/.vimrc"
-alias vim="/usr/local/Cellar/neovim/0.4.4_2/bin/nvim -u /Users/ntartal/dotfiles/vim/.vimrc"
-export EDITOR="vi -u /Users/ntartal/dotfiles/vim/.vimrc"
-
-
+alias vi="$EDITOR"
+alias vim="$EDITOR"
 
 # Alex's git rebase selector
 FZF_PREVIEW_BINDINGS="--bind page-up:preview-page-up,page-down:preview-page-down"
