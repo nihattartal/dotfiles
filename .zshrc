@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export DISABLE_SPRING=1
-export PATH=$HOME/runnables:$PATH
+export PATH=$HOME/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
