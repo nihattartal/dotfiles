@@ -7,7 +7,8 @@
 	version = 2
 [alias]
 	plush = push --force-with-lease
-	pullbase = pull --rebase origin master
+	pullbase-master = pull --rebase origin master
+	pullbase = pull --rebase origin main
 	co = checkout
 	br = branch
 	ci = commit
@@ -26,14 +27,16 @@
 	# Delete a branch and recreate it from master — useful if you have, say,
 	# a development branch and a master branch and they could conceivably go
 	# out of sync
-	recreate = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
+	recreatemaster = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
+	recreate = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout main && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
 
         # Diverges
         diverges = !sh -c 'git rev-list --boundary $1...$2 | grep "^-" | cut -c2-'
 
 	# Fire up your difftool (e.g. Kaleidescope) with all the changes that
 	# are on the current branch.
-	code-review = difftool origin/master...
+	code-review-master = difftool origin/master...
+	code-review = difftool origin/main...
 
 	# Given a merge commit, find the span of commits that exist(ed) on that
 	# branch. Again, not so useful in itself, but used by other aliases.
@@ -47,7 +50,8 @@
 	merge-difftool = "!git difftool `git merge-span ... $1`"
 
 	# Interactively rebase all the commits on the current branch
-	rebase-branch = "!git rebase -i `git merge-base master HEAD`"
+	rebase-branch-master = "!git rebase -i `git merge-base master HEAD`"
+	rebase-branch = "!git rebase -i `git merge-base main HEAD`"
 
 	#
 	# Working with files
@@ -72,7 +76,8 @@
 
 	# Delete any branches that have been merged into master
 	# See also: https://gist.github.com/robmiller/5133264
-	delete-merged-branches = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	delete-merged-branches-master = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	delete-merged-branches = "!git co main && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 #[format]
 #	pretty = oneline
 [merge]
