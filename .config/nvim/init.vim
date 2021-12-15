@@ -46,6 +46,10 @@ set noswapfile
 set autoindent
 set tags^=./.git/tags;
 
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+
 source ~/.config/nvim/fuzzy-finding.vim
 source ~/.config/nvim/smart-tab.vim
 source ~/.config/nvim/test-support.vim
