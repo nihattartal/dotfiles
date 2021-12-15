@@ -78,6 +78,9 @@
 	# See also: https://gist.github.com/robmiller/5133264
 	delete-merged-branches-master = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 	delete-merged-branches = "!git co main && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+        freeze = update-index --assume-unchanged
+        thaw = update-index --no-assume-unchanged
 #[format]
 #	pretty = oneline
 [merge]
