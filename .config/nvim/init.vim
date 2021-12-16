@@ -46,6 +46,25 @@ set noswapfile
 set autoindent
 set tags^=./.git/tags;
 
+" Set Relative number
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+augroup END
+
+" Highlight the line on the insert mode
+:autocmd InsertEnter,InsertLeave * set cul!
+
+" Enable use of the mouse for all modes
+set mouse=a
+
+" Show vertical and horizontal line for the cursor
+set cursorcolumn
+set cursorline
+
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
@@ -124,3 +143,11 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 nnoremap ;bc :Bclose<CR>
+
+"------------------------------------------------------------
+" Split navigation
+"------------------------------------------------------------
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
