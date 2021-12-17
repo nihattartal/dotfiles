@@ -10,9 +10,8 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <Right> <C-w>l
 nnoremap <Left> <C-w>h
-nnoremap <Up> <C-w>k
-nnoremap <Down> <C-w>j
-nnoremap <C-j> <C-w>j
+nnoremap <Up> 5k
+nnoremap <Down> 5j
 " yank root of current file's name into the clipboard
 nnoremap <leader>p :!echo % \| pbcopy<cr><cr>
 "-----------------------------------------------------------
@@ -86,17 +85,8 @@ map <leader>ve :edit $MYVIMRC<cr>
 map <leader>vs :source $MYVIMRC<cr>
 
 "------------------------------------------------------------
-" Split navigation
-"------------------------------------------------------------
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-"------------------------------------------------------------
 " NerdTree
 "------------------------------------------------------------
-nnoremap <C-J> <C-W><C-J>
 set modifiable
 map <C-n> :NERDTreeToggle<CR>
 map ] :NERDTreeFind<CR>
@@ -143,11 +133,3 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 nnoremap ;bc :Bclose<CR>
-
-"------------------------------------------------------------
-" Split navigation
-"------------------------------------------------------------
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
