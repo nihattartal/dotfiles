@@ -40,7 +40,7 @@ autocmd FileType gitcommit setlocal spell
 
 set number
 set clipboard+=unnamedplus
-set colorcolumn=81
+set colorcolumn=121
 set hidden
 set noswapfile
 set autoindent
