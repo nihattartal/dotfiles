@@ -28,3 +28,4 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 if_program_installed nvim 'export VISUAL=nvim'
 if_program_installed nvim 'export EDITOR="$VISUAL"'
+export WAYLAND_DISPLAY=1

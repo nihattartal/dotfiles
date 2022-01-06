@@ -4,6 +4,11 @@ pre_install() {
   if [ $SPIN ] ; then
     sudo apt install -y silversearcher-ag
     rm ~/.gitconfig ~/.zshrc
+
+    ## This is just to trick vim-system-copy to use pbcopy
+    ## Actually vim-system-copy is using non existing wl-copy but we are linking that
+    ## to pbcopy which in spin it sends the clipboard to our machines
+    sudo ln -s /usr/bin/pbcopy /usr/bin/wl-copy
   fi
 }
 
