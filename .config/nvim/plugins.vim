@@ -39,4 +39,8 @@ Plug 'peitalin/vim-jsx-typescript'
 " Colorschemes
 Plug 'joedicastro/vim-molokai256'
 
+" System copy
+Plug 'christoomey/vim-system-copy'
+
+
 call plug#end()

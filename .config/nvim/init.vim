@@ -38,11 +38,11 @@ colorscheme molokai256
 autocmd FileType gitcommit setlocal spell
 
 set number
-set clipboard+=unnamedplus
 set colorcolumn=121
 set hidden
 set noswapfile
 set autoindent
+set autoread
 set tags^=./.git/tags;
 
 " Set Relative number
