@@ -107,7 +107,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Ack
 "-----------------------------------------------------------
 nnoremap <leader>a :Ack<space>
-let g:ackprg = 'ag --ignore "*.rbi"'
+let g:ackprg = 'rg --ignore-files `*.rbi`'
 
 
 "-----------------------------------------------------------s

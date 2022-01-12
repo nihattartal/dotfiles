@@ -2,7 +2,7 @@
 
 pre_install() {
   if [ $SPIN ] ; then
-    sudo apt install -y silversearcher-ag
+    sudo apt install -y ripgrep
     rm ~/.gitconfig ~/.zshrc
 
     ## This is just to trick vim-system-copy to use pbcopy
