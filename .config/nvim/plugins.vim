@@ -42,5 +42,8 @@ Plug 'joedicastro/vim-molokai256'
 " System copy
 Plug 'christoomey/vim-system-copy'
 
+" Coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 call plug#end()
