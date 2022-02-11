@@ -30,9 +30,14 @@ install() {
   ./create-symlinks
 }
 
+add_shopify_email() {
+  git config --global user.email "nihat.tartal@shopify.com"
+}
+
 main() {
   pre_install
   install
+  add_shopify_email
 }
 
 main
