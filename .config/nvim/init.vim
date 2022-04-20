@@ -43,6 +43,8 @@ set hidden
 set noswapfile
 set autoindent
 set autoread
+au CursorHold * checktime
+
 set tags^=./.git/tags;
 
 " Set Relative number
