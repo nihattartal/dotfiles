@@ -88,6 +88,7 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR='nvim'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -100,52 +101,67 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)"
-  fi
-}
+ prompt_context() {
+   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+     prompt_segment black default "%(!.%{%F{yellow}%}.)"
+   fi
+ }
+ 
+ 
+ #VIM
+ alias vi="$EDITOR"
+ alias vim="$EDITOR"
+ 
+ # Alex's git rebase selector
+  FZF_PREVIEW_BINDINGS="--bind page-up:preview-page-up,page-down:preview-page-down"
+  AUTOCOMPLETE_FZF_OPTIONS="--height ${FZF_TMUX_HEIGHT:-60%} ${FZF_PREVIEW_BINDINGS} ${FZF_DEFAULT_OPTS} -n2..,.. \
+        --tiebreak=index $FZF_CTRL_R_OPTS +m"
+  git_autocomplete() {
+    local selected preview_bindings
+    setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+    selected=$(run_selection_program $LBUFFER)
+    LBUFFER="${LBUFFER}${selected}"
+    local ret=$?
+    zle reset-prompt
+    return $ret
+  }
+  run_selection_program() {
+    buffer=$1
+    if [[ $buffer =~ "git rebase" ]] || [[ $buffer =~ "git commit --fixup" ]]; then
+      git list-branch-commits | run_fzf_with_preview "git show {}"
+    elif [[ $buffer =~ "git add" ]] || [[ $buffer =~ "git reset" ]] ; then
+      { git diff --name-only; git ls-files --others --exclude-standard; } | run_fzf_with_preview "git ls-files --error-unmatch 2> /dev/null {} && git diff {} || git diff --no-index /dev/null {}"
+    else
+      git list-branch-commits | run_fzf_with_preview "git show {}"
+    fi
+  }
+  run_fzf_with_preview() {
+    FZF_DEFAULT_OPTS=${AUTOCOMPLETE_FZF_OPTIONS} fzf --preview="$1"
+  }
+  
+  zle     -N   git_autocomplete
+  bindkey '^G' git_autocomplete
+ 
+ [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+ if [ -e /Users/ntartal/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ntartal/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+ 
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && { type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; } }
+ 
+ [[ -x /usr/local/bin/brew ]] && eval $(/usr/local/bin/brew shellenv)
+ 
+ [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+# export TZ="UTC"
+# export AWS_REGION="us-east-1"
+ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+ export JAVA_HOME="/usr/libexec/java_home -v 1.8"
 
 
-#VIM
-alias vi="$EDITOR"
-alias vim="$EDITOR"
 
-# Alex's git rebase selector
-FZF_PREVIEW_BINDINGS="--bind page-up:preview-page-up,page-down:preview-page-down"
-AUTOCOMPLETE_FZF_OPTIONS="--height ${FZF_TMUX_HEIGHT:-60%} ${FZF_PREVIEW_BINDINGS} ${FZF_DEFAULT_OPTS} -n2..,.. \
-      --tiebreak=index $FZF_CTRL_R_OPTS +m"
-git_autocomplete() {
-  local selected preview_bindings
-  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  selected=$(run_selection_program $LBUFFER)
-  LBUFFER="${LBUFFER}${selected}"
-  local ret=$?
-  zle reset-prompt
-  return $ret
-}
-run_selection_program() {
-  buffer=$1
-  if [[ $buffer =~ "git rebase" ]] || [[ $buffer =~ "git commit --fixup" ]]; then
-    git list-branch-commits | run_fzf_with_preview "git show {}"
-  elif [[ $buffer =~ "git add" ]] || [[ $buffer =~ "git reset" ]] ; then
-    { git diff --name-only; git ls-files --others --exclude-standard; } | run_fzf_with_preview "git ls-files --error-unmatch 2> /dev/null {} && git diff {} || git diff --no-index /dev/null {}"
-  else
-    git list-branch-commits | run_fzf_with_preview "git show {}"
-  fi
-}
-run_fzf_with_preview() {
-  FZF_DEFAULT_OPTS=${AUTOCOMPLETE_FZF_OPTIONS} fzf --preview="$1"
-}
+export ENABLE_TEST_LOGS=true
+alias aws_change_profile_staging='export AWS_PROFILE=staging'
 
-zle     -N   git_autocomplete
-bindkey '^G' git_autocomplete
-
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
-if [ -e /Users/ntartal/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ntartal/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
-
-[[ -x /usr/local/bin/brew ]] && eval $(/usr/local/bin/brew shellenv)
-
-[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+#
+eval "$(direnv hook zsh)"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
