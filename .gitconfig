@@ -1,6 +1,7 @@
 [user]
 	name = Nihat Tartal
-	email = ntartal@gmail.com
+	email = nihat.tartal@gusto.com
+	signingkey = /Users/nihat.tartal/.ssh/id_ed25519.pub
 [alias]
 	plush = push --force-with-lease
 	pullbase-master = pull --rebase origin master
@@ -89,3 +90,11 @@
 	rebase = false
 #[user]
 #	email = nihat.tartal@shopify.com
+[fetch]
+	auto = false
+[credential]
+	helper = osxkeychain
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
