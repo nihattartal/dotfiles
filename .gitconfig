@@ -28,7 +28,7 @@
 	recreate = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout main && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
 
         # Diverges
-        diverges = !sh -c 'git rev-list --boundary $1...$2 | grep "^-" | cut -c2-'
+	diverges = !sh -c 'git rev-list --boundary $1...$2 | grep "^-" | cut -c2-'
 
 	# Fire up your difftool (e.g. Kaleidescope) with all the changes that
 	# are on the current branch.
